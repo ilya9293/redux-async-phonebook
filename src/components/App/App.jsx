@@ -4,16 +4,18 @@ import Filter from '../Filter';
 import ContactList from '../ContactList';
 import * as storage from '../../services/localStorage';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../../redux/contacts/contactsOperations';
 
 const CONTACTSLOCALE = 'contacts';
 
 const App = () => {
   const state = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    storage.save(CONTACTSLOCALE, state.items);
-  }, [state.items]);
+    dispatch(getContacts());
+  }, [dispatch]);
 
   const handleFilter = () =>
     state.items.filter(contact => {

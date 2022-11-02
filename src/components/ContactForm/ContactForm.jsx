@@ -3,6 +3,7 @@ import s from './ContactForm.module.css';
 import { itemsSlice } from '../../redux/contacts/contactsSlice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsOperations';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -38,7 +39,8 @@ const ContactForm = () => {
       reset();
       return;
     }
-    dispatch(itemsSlice.actions.itemsAdd(name, number));
+    dispatch(addContact(name));
+    //  dispatch(itemsSlice.actions.itemsAdd(name, number));
     //  dispatch(itemsAdd(name, number));
     reset();
   };

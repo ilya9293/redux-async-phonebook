@@ -1,43 +1,56 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { itemsAdd, itemsRemove, filterSet } from '../contacts/contactsAction';
+import {
+  itemsAdd,
+  itemsRemove,
+  getContactsRequest,
+  getContactsSuccess,
+  getContactsError,
+  addContactsRequest,
+  addContactsSuccess,
+  addContactsError,
+  filterSet,
+} from '../contacts/contactsAction';
 import isContacts from './intialStateForItems';
 
-const itemsReducer = createReducer(isContacts, builder => {
+const itemsReducer = createReducer([], builder => {
   builder
-    .addCase(itemsAdd, (state, action) => [...state, action.payload])
-    .addCase(itemsRemove, (_, action) => action.payload);
+    .addCase(getContactsSuccess, (_, action) => action.payload)
+    .addCase(addContactsSuccess, (state, action) => [...state, action.payload]);
+});
+
+const firstLoadingReducer = createReducer(false, builder => {
+  builder
+    .addCase(getContactsRequest, () => true)
+    .addCase(getContactsSuccess, () => false)
+    .addCase(getContactsError, () => false);
+});
+
+const loadingReducer = createReducer(false, builder => {
+  builder
+    .addCase(addContactsRequest, () => true)
+    .addCase(addContactsSuccess, () => false)
+    .addCase(addContactsError, () => false);
+});
+
+const errorReducer = createReducer(null, builder => {
+  builder
+    .addCase(getContactsRequest, () => null)
+    .addCase(getContactsError, (_, { payload }) => payload)
+
+    .addCase(addContactsRequest, () => null)
+    .addCase(addContactsError, (_, { payload }) => payload);
 });
 
 const filterReducer = createReducer('', builder => {
   builder.addCase(filterSet, (_, action) => action.payload);
 });
 
-// Old reducers
-// const itemsReducer = (state = isContacts, action) => {
-//   switch (action.type) {
-//     case 'contacts/add':
-//       return [...state, action.payload];
-//     case 'contacts/remove':
-//       return action.payload;
-
-//     default:
-//       return state;
-//   }
-// };
-
-// const filterReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'filter/set':
-//       return action.payload;
-
-//     default:
-//       return state;
-//   }
-// };
-
 const contactsReducer = combineReducers({
   items: itemsReducer,
+  firstLoading: firstLoadingReducer,
+  loading: loadingReducer,
+  error: errorReducer,
   filter: filterReducer,
 });
 

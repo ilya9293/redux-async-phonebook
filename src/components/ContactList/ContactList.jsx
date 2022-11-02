@@ -6,10 +6,10 @@ import ContactListItem from './ContactListItem';
 function ContactList({ handleFilter }) {
   return (
     <ul className={s.list}>
-      {handleFilter().map(({ id, name, number }) => {
+      {handleFilter().map(({ id, name, phone }) => {
         return (
           <li key={id} className={s.listItem}>
-            <ContactListItem name={name} number={number} />
+            <ContactListItem name={name} number={phone} />
             <Button id={id} />
           </li>
         );
