@@ -39,9 +39,12 @@ const ContactForm = () => {
       reset();
       return;
     }
-    dispatch(addContact(name));
-    //  dispatch(itemsSlice.actions.itemsAdd(name, number));
-    //  dispatch(itemsAdd(name, number));
+    dispatch(
+      addContact({
+        name,
+        phone: number,
+      }),
+    );
     reset();
   };
 

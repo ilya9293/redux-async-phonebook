@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 // import { itemsRemove } from '../../../redux/contacts/contactsAction';
-import { itemsSlice } from '../../../redux/contacts/contactsSlice';
+// import { itemsSlice } from '../../../redux/contacts/contactsSlice';
+import { removeContact } from '../../../redux/contacts/contactsOperations';
 import PropTypes from 'prop-types';
 import s from './Button.module.css';
 
@@ -9,9 +10,11 @@ function Button({ id }) {
   const dispatch = useDispatch();
 
   const deleteContact = () => {
-    const filteredContacts = contacts.items.filter(contact => contact.id !== id);
+    //  console.log(id);
+    //  const filteredContacts = contacts.items.filter(contact => contact.id !== id);
     //  dispatch(itemsRemove(filteredContacts));
-    dispatch(itemsSlice.actions.itemsRemove(filteredContacts));
+    //  dispatch(itemsSlice.actions.itemsRemove(filteredContacts));
+    dispatch(removeContact(id));
   };
 
   return (
