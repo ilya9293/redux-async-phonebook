@@ -1,6 +1,6 @@
 import s from './ContactForm.module.css';
 // import { itemsAdd } from '../../redux/contacts/contactsAction';
-import { itemsSlice } from '../../redux/contacts/contactsSlice';
+// import { itemsSlice } from '../../redux/contacts/contactsSlice';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperations';

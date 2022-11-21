@@ -19,7 +19,6 @@ import { getContacts, addContact, removeContact } from './contactsOperations';
 
 const initialState = {
   items: [],
-  firstLoading: false,
   loading: false,
   error: null,
   filter: '',
@@ -35,7 +34,7 @@ const contactsReducer = createSlice({
     builder
       .addCase(getContacts.pending, state => ({
         ...state,
-        firstLoading: true,
+
         loading: true,
         error: null,
 
@@ -46,7 +45,7 @@ const contactsReducer = createSlice({
       .addCase(getContacts.fulfilled, (state, action) => ({
         ...state,
         items: action.payload,
-        firstLoading: false,
+
         loading: false,
 
         //   state.items = action.payload;
@@ -55,7 +54,7 @@ const contactsReducer = createSlice({
       }))
       .addCase(getContacts.rejected, (state, action) => ({
         ...state,
-        firstLoading: false,
+
         error: action.payload,
 
         //   state.firstLoading = false;

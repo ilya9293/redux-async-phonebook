@@ -6,20 +6,22 @@ import ContactListItem from './ContactListItem';
 
 function ContactList({ handleFilter }) {
   const contacts = useSelector(state => state.contacts);
-  console.log(contacts.loading);
+  console.log(contacts);
   return (
-    <ul className={s.list}>
-      {handleFilter().map(({ id, name, phone }) => {
-        return (
-          !contacts.loading && (
+    <>
+      <ul className={s.list}>
+        {handleFilter().map(({ id, name, phone }) => {
+          return (
             <li key={id} className={s.listItem}>
               <ContactListItem name={name} number={phone} />
               <Button id={id} />
             </li>
-          )
-        );
-      })}
-    </ul>
+          );
+        })}
+      </ul>
+
+      {contacts.loading && <div className={s.loading}>Loading...</div>}
+    </>
   );
 }
 
