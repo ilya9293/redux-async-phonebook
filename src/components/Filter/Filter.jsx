@@ -3,9 +3,11 @@ import s from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 // import { filterSet } from '../../redux/contacts/contactsAction';
 import { contactsReducer } from '../../redux/contacts/contactsReducer';
+import { getFilter } from '../../redux/contacts/contactsSelectors';
 
 function Filter() {
-  const contacts = useSelector(state => state.contacts);
+  //   const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
   const filterSet = contactsReducer.actions.filterSet;
 
@@ -14,7 +16,7 @@ function Filter() {
   return (
     <label className={s.filter}>
       Find contacts by name
-      <input type="text" name="filter" value={contacts.filter} onChange={handleChange} />
+      <input type="text" name="filter" value={filter} onChange={handleChange} />
     </label>
   );
 }

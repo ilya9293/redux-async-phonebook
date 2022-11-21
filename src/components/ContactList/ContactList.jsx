@@ -3,10 +3,12 @@ import Button from './Button';
 import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 import ContactListItem from './ContactListItem';
+import { getLoading } from '../../redux/contacts/contactsSelectors';
 
 function ContactList({ handleFilter }) {
-  const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
+  //   const contacts = useSelector(state => state.contacts);
+  const loading = useSelector(getLoading);
+
   return (
     <>
       <ul className={s.list}>
@@ -20,7 +22,7 @@ function ContactList({ handleFilter }) {
         })}
       </ul>
 
-      {contacts.loading && <div className={s.loading}>Loading...</div>}
+      {loading && <div className={s.loading}>Loading...</div>}
     </>
   );
 }

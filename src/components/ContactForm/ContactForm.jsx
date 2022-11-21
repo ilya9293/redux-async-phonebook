@@ -4,11 +4,13 @@ import s from './ContactForm.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperations';
+import { getItems } from '../../redux/contacts/contactsSelectors';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts);
+  //   const contacts = useSelector(state => state.contacts);
+  const items = useSelector(getItems);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -31,9 +33,7 @@ const ContactForm = () => {
 
   const pushSubmit = e => {
     e.preventDefault();
-    const isName = contacts.items.some(
-      contact => name.toLowerCase() === contact.name.toLowerCase(),
-    );
+    const isName = items.some(contact => name.toLowerCase() === contact.name.toLowerCase());
     if (isName) {
       alert(`${name} is alredy in contacts`);
       reset();

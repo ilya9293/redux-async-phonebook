@@ -6,11 +6,14 @@ import ContactList from '../ContactList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/contacts/contactsOperations';
+import { getItems, getFilter } from '../../redux/contacts/contactsSelectors';
 
 // const CONTACTSLOCALE = 'contacts';
 
 const App = () => {
-  const state = useSelector(state => state.contacts);
+  //   const state = useSelector(state => state.contacts);
+  const items = useSelector(getItems);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,8 +21,8 @@ const App = () => {
   }, [dispatch]);
 
   const handleFilter = () =>
-    state.items.filter(contact => {
-      return contact.name.toLowerCase().includes(state.filter.toLowerCase());
+    items.filter(contact => {
+      return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
 
   return (
