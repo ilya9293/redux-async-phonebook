@@ -8,7 +8,7 @@ import { contactsReducer } from './contacts/contactsReducer';
 // });
 
 const reducer = combineReducers({
-  contacts: contactsReducer,
+  contacts: contactsReducer.reducer,
 });
 
 const store = configureStore({

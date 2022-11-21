@@ -1,5 +1,8 @@
-import { combineReducers } from 'redux';
-import { createReducer, createSlice } from '@reduxjs/toolkit';
+// import { combineReducers } from 'redux';
+import {
+  //  createReducer,
+  createSlice,
+} from '@reduxjs/toolkit';
 // import {
 //   getContactsRequest,
 //   getContactsSuccess,
@@ -26,50 +29,88 @@ const contactsReducer = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    filterSet: (_, action) => action.payload,
+    filterSet: (state, action) => ({ ...state, filter: action.payload }),
   },
   extraReducers: builder => {
     builder
-      .addCase(getContacts.pending, state => {
-        state.firstLoading = true;
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getContacts.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.firstLoading = false;
-        state.loading = false;
-      })
-      .addCase(getContacts.rejected, (state, action) => {
-        state.firstLoading = false;
-        state.error = action.payload;
-      })
+      .addCase(getContacts.pending, state => ({
+        ...state,
+        firstLoading: true,
+        loading: true,
+        error: null,
 
-      .addCase(addContact.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(addContact.fulfilled, (state, action) => {
-        state.items = [...state.items, action.payload];
-        state.loading = false;
-      })
-      .addCase(addContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+        //   state.firstLoading = true;
+        //   state.loading = true;
+        //   state.error = null;
+      }))
+      .addCase(getContacts.fulfilled, (state, action) => ({
+        ...state,
+        items: action.payload,
+        firstLoading: false,
+        loading: false,
 
-      .addCase(removeContact.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(removeContact.fulfilled, (state, action) => {
-        state.items = state.items.filter(contact => contact.id !== action.payload.id);
-        state.loading = false;
-      })
-      .addCase(removeContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+        //   state.items = action.payload;
+        //   state.firstLoading = false;
+        //   state.loading = false;
+      }))
+      .addCase(getContacts.rejected, (state, action) => ({
+        ...state,
+        firstLoading: false,
+        error: action.payload,
+
+        //   state.firstLoading = false;
+        //   state.error = action.payload;
+      }))
+
+      .addCase(addContact.pending, state => ({
+        ...state,
+        loading: true,
+        error: null,
+
+        //   state.loading = true;
+        //   state.error = null;
+      }))
+      .addCase(addContact.fulfilled, (state, action) => ({
+        ...state,
+        items: [...state.items, action.payload],
+        loading: false,
+
+        //   state.items = [...state.items, action.payload];
+        //   state.loading = false;
+      }))
+      .addCase(addContact.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.payload,
+
+        //   state.loading = false;
+        //   state.error = action.payload;
+      }))
+
+      .addCase(removeContact.pending, state => ({
+        ...state,
+        loading: true,
+        error: null,
+
+        //   state.loading = true;
+        //   state.error = null;
+      }))
+      .addCase(removeContact.fulfilled, (state, action) => ({
+        ...state,
+        items: state.items.filter(contact => contact.id !== action.payload.id),
+        loading: false,
+
+        //   state.items = state.items.filter(contact => contact.id !== action.payload.id);
+        //   state.loading = false;
+      }))
+      .addCase(removeContact.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.payload,
+
+        //   state.loading = false;
+        //   state.error = action.payload;
+      }));
   },
 });
 

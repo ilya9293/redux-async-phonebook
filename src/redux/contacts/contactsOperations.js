@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getData, saveItem, deleteItem } from '../../services/api';
-import {
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-  addContactsRequest,
-  addContactsSuccess,
-  addContactsError,
-  removeContactRequest,
-  removeContactSuccess,
-  removeContactError,
-} from './contactsAction';
+// import {
+//   getContactsRequest,
+//   getContactsSuccess,
+//   getContactsError,
+//   addContactsRequest,
+//   addContactsSuccess,
+//   addContactsError,
+//   removeContactRequest,
+//   removeContactSuccess,
+//   removeContactError,
+// } from './contactsAction';
 
 const CONTACTSLOCALE = 'contacts';
 

@@ -2,12 +2,12 @@ import s from './App.module.css';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 import ContactList from '../ContactList';
-import * as storage from '../../services/localStorage';
+// import * as storage from '../../services/localStorage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/contacts/contactsOperations';
 
-const CONTACTSLOCALE = 'contacts';
+// const CONTACTSLOCALE = 'contacts';
 
 const App = () => {
   const state = useSelector(state => state.contacts);
