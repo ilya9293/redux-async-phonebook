@@ -12,7 +12,7 @@ function ContactList({ handleFilter }) {
   return (
     <>
       <ul className={s.list}>
-        {handleFilter().map(({ id, name, phone }) => {
+        {handleFilter.map(({ id, name, phone }) => {
           return (
             <li key={id} className={s.listItem}>
               <ContactListItem name={name} number={phone} />
@@ -28,7 +28,7 @@ function ContactList({ handleFilter }) {
 }
 
 ContactList.propTypes = {
-  handleFilter: PropTypes.func.isRequired,
+  handleFilter: PropTypes.array.isRequired,
 };
 
 export default ContactList;

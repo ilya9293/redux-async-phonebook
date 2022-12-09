@@ -6,24 +6,29 @@ import ContactList from '../ContactList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/contacts/contactsOperations';
-import { getItems, getFilter } from '../../redux/contacts/contactsSelectors';
+import {
+  // getItems,
+  // getFilter,
+  getFilteredContacts,
+} from '../../redux/contacts/contactsSelectors';
 
 // const CONTACTSLOCALE = 'contacts';
 
 const App = () => {
   //   const state = useSelector(state => state.contacts);
-  const items = useSelector(getItems);
-  const filter = useSelector(getFilter);
+  //   const items = useSelector(getItems);
+  //   const filter = useSelector(getFilter);
+  const filteredContacts = useSelector(getFilteredContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getContacts());
   }, [dispatch]);
 
-  const handleFilter = () =>
-    items.filter(contact => {
-      return contact.name.toLowerCase().includes(filter.toLowerCase());
-    });
+  //   const handleFilter = () =>
+  //     items.filter(contact => {
+  //       return contact.name.toLowerCase().includes(filter.toLowerCase());
+  //     });
 
   return (
     <div className={s.container}>
@@ -32,7 +37,8 @@ const App = () => {
       <h2 className={s.title}>Contacts</h2>
 
       <Filter />
-      {!!handleFilter().length && <ContactList handleFilter={handleFilter} />}
+      {!!filteredContacts.length && <ContactList handleFilter={filteredContacts} />}
+      {/* {!!handleFilter().length && <ContactList handleFilter={handleFilter} />} */}
     </div>
   );
 };

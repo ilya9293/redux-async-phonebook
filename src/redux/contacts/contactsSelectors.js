@@ -6,4 +6,12 @@ const getLoading = state => state.contacts.loading;
 
 const getError = state => state.contacts.error;
 
-export { getItems, getFilter, getLoading, getError };
+const getFilteredContacts = state => {
+  const items = getItems(state);
+  const filter = getFilter(state);
+  console.log(items);
+
+  return items.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+};
+
+export { getItems, getFilter, getLoading, getError, getFilteredContacts };
