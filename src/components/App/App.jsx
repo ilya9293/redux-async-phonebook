@@ -9,7 +9,8 @@ import { getContacts } from '../../redux/contacts/contactsOperations';
 import {
   // getItems,
   // getFilter,
-  getFilteredContacts,
+  //   getFilteredContacts,
+  getMemoizedFilteredContacts,
 } from '../../redux/contacts/contactsSelectors';
 
 // const CONTACTSLOCALE = 'contacts';
@@ -18,7 +19,7 @@ const App = () => {
   //   const state = useSelector(state => state.contacts);
   //   const items = useSelector(getItems);
   //   const filter = useSelector(getFilter);
-  const filteredContacts = useSelector(getFilteredContacts);
+  const filteredContacts = useSelector(getMemoizedFilteredContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
